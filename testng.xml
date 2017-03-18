@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+  
+<suite name="HTTPReqGenTestSuite" parallel="false" verbose="2" >
+
+
+<parameter name="workJson" value="./testJsons" />
+<test name="HTTPReqGenTest">
+  <classes>
+    <class name="com.ilawApiTest.oper.HTTPReqResTest"/>
+  </classes>
+
+
+</test>
+
+
+</suite>
+
+
