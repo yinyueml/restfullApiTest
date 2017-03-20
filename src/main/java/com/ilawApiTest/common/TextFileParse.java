@@ -10,7 +10,7 @@ import java.io.IOException;
  * Created by shaowei on 2017/3/16.
  */
 public class TextFileParse {
-
+    //读文档返回json串
     public static String getJsonStringFromText(File path) throws IOException {
         FileInputStream in=null;
         String jsonStr=null;

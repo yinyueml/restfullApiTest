@@ -2,6 +2,7 @@ package com.ilawApiTest.common;
 
 /**
  * Created by shaowei on 2017/3/17.
+ * 结果信息实体类
  */
 public class ResultMessage {
 

@@ -1,7 +1,6 @@
 package com.ilawApiTest.common;
 
 import com.jayway.restassured.response.Response;
-import com.sun.corba.se.impl.ior.OldJIDLObjectKeyTemplate;
 import com.zf.json.JsonAction;
 import org.apache.http.util.TextUtils;
 import org.json.JSONArray;
@@ -11,7 +10,7 @@ import java.util.*;
 
 /**
  * Created by shaowei on 2017/3/16.
- * 解析json内容
+ * 解析json内容的操作类
  */
 public class JsonHandle {
 
