@@ -2,9 +2,7 @@ package com.ilawApiTest.common;
 
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
-import com.sun.corba.se.impl.protocol.giopmsgheaders.RequestMessage;
 import com.zf.json.JsonAction;
-import junit.framework.Assert;
 import org.json.JSONException;
 import org.skyscreamer.jsonassert.JSONCompare;
 import org.skyscreamer.jsonassert.JSONCompareMode;

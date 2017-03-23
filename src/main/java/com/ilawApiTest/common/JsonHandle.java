@@ -2,8 +2,6 @@ package com.ilawApiTest.common;
 
 import com.jayway.restassured.response.Response;
 import com.zf.json.JsonAction;
-import org.apache.http.util.TextUtils;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.*;
