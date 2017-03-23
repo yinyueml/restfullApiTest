@@ -33,30 +33,6 @@ public class JsonHandle {
 
 
 
-    public static String getJsonValueByPath(String json,String path){
-        String[] paths=path.split("\\.");
-        String value=json;
-        for(int i=0;i<paths.length;i++){
-            if(!paths[i].contains("#")){
-                value=getJsonValue(value,paths[i]);
-            }else{
-                String[] arrayPath=paths[i].split("#");
-                try{
-                    JSONArray jsonArray=new JSONObject(value).getJSONArray(arrayPath[0]);
-                    value=jsonArray.getString(Integer.valueOf(arrayPath[1]));
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-
-
-
-            }
-
-        }
-        return value;
-    }
-
-
     public static Map<String,String> replaceJsonByPath(Map<String,String> map, Map<String,Response> responseMap){
         Set<String> keys=map.keySet();
         for(String key:keys){
@@ -70,7 +46,6 @@ public class JsonHandle {
                 JsonAction jsonAction=new JsonAction();
 
                 String pathValue=(String)jsonAction.getPathValue(orderJson,path);
-//                String pathValue=JsonHandle.getJsonValueByPath(orderJson,path);
                 if(key.equals("baselineBody")){
                     map.put(key,jsonValue.replaceAll("\"<<[\\s\\S]*>>\"",pathValue));
                 }else{
@@ -81,86 +56,6 @@ public class JsonHandle {
         }
         return map;
 
-    }
-    public static String getJsonValue(String json, String jsonId) {
-
-        String jsonValue = "";
-        if (null == json || json.trim().length() == 0) {
-            return null;
-        }
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            jsonValue = jsonObject.getString(jsonId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return jsonValue;
-    }
-
-    public static List<String> jsonCompare(String baselineJson, String responseJson)throws Exception {
-        Map<String, String> baselineMap = new HashMap<String, String>();
-        jsonAllToMap("",baselineJson,baselineMap);
-        Map<String, String> responseMap = getJsonMap(responseJson);
-        List<String> resList = new ArrayList<String>();
-        //baselineMap包含字段匹配或者规则，其中字段数量小于等于responseMap
-
-
-        return resList;
-    }
-
-
-    public static void jsonAllToMap(String key,String json,Map<String, String> baselineMap) throws Exception{
-        if(getJSONType(json)==JSON_TYPE.JSON_TYPE_EMPTY){
-            return;
-        }
-        if(getJSONType(json) == JSON_TYPE.JSON_TYPE_ARRAY){
-
-            JSONArray jsonArray=new JSONArray(json);
-            for(int i=0;i<jsonArray.length();i++){
-                String value=jsonArray.getString(i);
-
-                jsonAllToMap(key,value,baselineMap);
-            }
-
-
-        }else if(getJSONType(json) == JSON_TYPE.JSON_TYPE_VALUE){
-            baselineMap.put(key,json);
-            return;
-        }else if(getJSONType(json) == JSON_TYPE.JSON_TYPE_OBJECT){
-            JSONObject jsonObject=new JSONObject(json);
-            Iterator<String> keys=jsonObject.keys();
-            while(keys.hasNext()){
-
-                String value=jsonObject.getString(keys.next());
-                key=key+"."+keys.next();
-                jsonAllToMap(key,value,baselineMap);
-            }
-        }
-
-
-
-    }
-
-    public static JSON_TYPE getJSONType(String json){
-        if(TextUtils.isEmpty(json)){
-            return JSON_TYPE.JSON_TYPE_EMPTY;
-        }
-
-        final char strChar=json.charAt(0);
-        if(strChar=='{'){
-            return JSON_TYPE.JSON_TYPE_OBJECT;
-        }else if(strChar == '['){
-            return JSON_TYPE.JSON_TYPE_ARRAY;
-        }else{
-            return JSON_TYPE.JSON_TYPE_VALUE;
-        }
-    }
-
-    public enum JSON_TYPE {
-        JSON_TYPE_OBJECT,
-        JSON_TYPE_ARRAY,
-        JSON_TYPE_EMPTY,
-        JSON_TYPE_VALUE
     }
 
 }

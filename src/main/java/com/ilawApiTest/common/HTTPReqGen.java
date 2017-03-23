@@ -47,10 +47,6 @@ public class HTTPReqGen {
             //对该order的response进行测试。主要是json路径下value值的正确性判断
 
             ResultMessage resultMessage=resultMatching(requestMap,response,responseMap);
-
-
-
-
             resultMap.put(key,resultMessage);
         }
         return resultMap;
@@ -120,7 +116,6 @@ public class HTTPReqGen {
 
                     messageSB.append("response 路径"+test+"的规则为："+responseValue+";期望的值为："+testValue+"\n");
                 }
-
 
             }else{
                 messageSB.append("response 相应结果中没有该路径:"+test+"\n");

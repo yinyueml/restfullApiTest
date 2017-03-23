@@ -4,7 +4,6 @@ import com.ilawApiTest.common.*;
 import junit.framework.Assert;
 import org.testng.ITest;
 import org.testng.ITestContext;
-import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 
@@ -43,7 +42,6 @@ public class HTTPReqResTest implements ITest {
         }
 
         //读取模板文件，获取请求头的通用信息
-
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(new File(templatePath)));
@@ -74,7 +72,6 @@ public class HTTPReqResTest implements ITest {
         List<Object[]> caseList = new ArrayList<Object[]>();
 
         for (File jsonFile : testJsons) {
-
             try {
                 testJson = TextFileParse.getJsonStringFromText(jsonFile);
                 //解析测试文档json串
@@ -96,6 +93,7 @@ public class HTTPReqResTest implements ITest {
     public void api_test(String host, String caseName, Map<String, String> requestJsonMap) {
         boolean resultBoolean = true;
         HTTPReqGen httpReqGen = new HTTPReqGen();
+        //获取测试结果集
         Map<String, ResultMessage> resMap = httpReqGen.performRequestList(requestHeader, requestJsonMap, host);
         Set<String> resKeys = resMap.keySet();
         for (int i = 0; i < resKeys.size(); i++) {
