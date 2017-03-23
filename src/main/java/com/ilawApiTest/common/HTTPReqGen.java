@@ -4,10 +4,12 @@ import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 import com.sun.corba.se.impl.protocol.giopmsgheaders.RequestMessage;
 import com.zf.json.JsonAction;
+import junit.framework.Assert;
 import org.json.JSONException;
 import org.skyscreamer.jsonassert.JSONCompare;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.skyscreamer.jsonassert.JSONCompareResult;
+import org.testng.Reporter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,8 +68,6 @@ public class HTTPReqGen {
                 String baselineBody=requestMap.get("baselineBody");
                 if(baselineBody.length()>2){
                     resultMessage=getResultByCompare(response.asString(),baselineBody);
-                    System.out.println(baselineBody);
-                    System.out.println(response.asString());
                 }
             }else if(requestMap.get("testScript")!=null){
                 String testScript=requestMap.get("testScript");
@@ -197,7 +197,7 @@ public class HTTPReqGen {
                 }
 
                 default: {
-                    System.out.println("无该类型请求类型，请查看是否为GET、PUT、POTS、DELETE");
+                    Reporter.log("无该类型请求类型，请查看是否为GET、PUT、POTS、DELETE");
                 }
             }
 

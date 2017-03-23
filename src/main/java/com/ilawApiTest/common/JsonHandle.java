@@ -68,7 +68,6 @@ public class JsonHandle {
                 String orderJson=responseMap.get(order).asString();
                 String path=orderPath.substring(orderPath.indexOf(".")+1);
                 JsonAction jsonAction=new JsonAction();
-                System.out.println(orderJson);
 
                 String pathValue=(String)jsonAction.getPathValue(orderJson,path);
 //                String pathValue=JsonHandle.getJsonValueByPath(orderJson,path);

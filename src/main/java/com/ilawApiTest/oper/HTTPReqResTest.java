@@ -4,6 +4,8 @@ import com.ilawApiTest.common.*;
 import junit.framework.Assert;
 import org.testng.ITest;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
 import java.io.*;
@@ -92,7 +94,6 @@ public class HTTPReqResTest implements ITest {
 
     @Test(dataProvider = "requestJsonDate", description = "HTTPReqResTest")
     public void api_test(String host, String caseName, Map<String, String> requestJsonMap) {
-        StringBuffer outputSB = new StringBuffer("");
         boolean resultBoolean = true;
         HTTPReqGen httpReqGen = new HTTPReqGen();
         Map<String, ResultMessage> resMap = httpReqGen.performRequestList(requestHeader, requestJsonMap, host);
@@ -101,21 +102,16 @@ public class HTTPReqResTest implements ITest {
             String key = "order" + i;
             ResultMessage resultMessage = resMap.get(key);
             if (resultMessage != null) {
-                if (resultMessage.isSuccess()) {
-                    outputSB.append("\n============================\n");
-                    outputSB.append(resultMessage.getMessageHeader() + "\n");
-                    outputSB.append("<<<<<<<<<<<<\n");
-                    outputSB.append(resultMessage.getResultMessage() + "\n");
-                } else {
+                if (!resultMessage.isSuccess()) {
                     resultBoolean = false;
-                    outputSB.append("\n============================\n");
-                    outputSB.append(resultMessage.getMessageHeader() + "\n");
-                    outputSB.append("<<<<<<<<<<<<\n");
-                    outputSB.append(resultMessage.getResultMessage() + "\n");
                 }
+                Reporter.log(resultMessage.getMessageHeader() +"\n开始测试：");
+                Reporter.log(resultMessage.getResultMessage());
+                Reporter.log("结束测试");
             }
         }
-        Assert.assertTrue(outputSB.toString(), resultBoolean);
+        Reporter.getCurrentTestResult().setAttribute("caseName",caseName);
+        Assert.assertTrue(resultBoolean);
     }
 
 

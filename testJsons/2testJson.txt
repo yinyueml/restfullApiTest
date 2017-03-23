@@ -1,0 +1,141 @@
+{
+"caseGroup":"增加客户模板",
+"request":{"order0":{
+    "case":"新增客户模板",
+    "apiPath":"/ilaw/api/v2/contactTemplate",
+    "requestType":"POST",
+    "Content-Type":"application/json;charset=UTF-8",
+    "requestBody":{
+                         "contactTemplate": {
+                           "pkid": null,
+                           "templateName": "项目模板测试",
+                           "templateType": "C",
+                           "parentType": "C",
+                           "isValid": "1",
+                           "subjectId": null,
+                           "subjectType": null,
+                           "crtTime": null,
+                           "crtUser": null,
+                           "updTime": null,
+                           "updUser": null,
+                           "officeId": null
+                         },
+                         "contactTemplateItemList": [
+                           {
+                             "contactTemplateItem": {
+                               "pkid": null,
+                               "itemName": "地址字段",
+                               "templateId": null,
+                               "orderNum": 0,
+                               "isDefault": "1",
+                               "isHidden": "0",
+                               "itemType": "T",
+                               "isValid": "1",
+                               "isRequired": "1",
+                               "isMultiple": "1",
+                               "isCategory": "1",
+                               "isCateRequired": "1",
+                               "isCateDefinite": "1",
+                               "crtTime": null,
+                               "crtUser": null,
+                               "updTime": null,
+                               "updUser": null,
+                               "officeId": null
+                             },
+                             "contactTemplateItemCategoryList": [
+                               {
+                                 "pkid": null,
+                                 "templateItemId": null,
+                                 "isValid": "1",
+                                 "orderNum": 0,
+                                 "categoryName": "曾用地址",
+                                 "isDefault": "0",
+                                 "crtTime": null,
+                                 "crtUser": null,
+                                 "updTime": null,
+                                 "updUser": null,
+                                 "officeId": null
+                               },
+                               {
+                                 "pkid": null,
+                                 "templateItemId": null,
+                                 "isValid": "1",
+                                 "orderNum": 1,
+                                 "categoryName": "高级地址",
+                                 "isDefault": "1",
+                                 "crtTime": null,
+                                 "crtUser": null,
+                                 "updTime": null,
+                                 "updUser": null,
+                                 "officeId": null
+                               }
+                             ]
+                           },
+                           {
+                             "contactTemplateItem": {
+                               "pkid": null,
+                               "itemName": "名字字段",
+                               "templateId": null,
+                               "orderNum": 2,
+                               "isDefault": "0",
+                               "isHidden": "1",
+                               "itemType": "T",
+                               "isValid": "1",
+                               "isRequired": "1",
+                               "isMultiple": "1",
+                               "isCategory": "1",
+                               "isCateRequired": "1",
+                               "isCateDefinite": "1",
+                               "crtTime": null,
+                               "crtUser": null,
+                               "updTime": null,
+                               "updUser": null,
+                               "officeId": null
+                             },
+                             "contactTemplateItemCategoryList": [
+                               {
+                                 "pkid": null,
+                                 "templateItemId": null,
+                                 "isValid": "1",
+                                 "orderNum": 0,
+                                 "categoryName": "现在111用的",
+                                 "isDefault": "0",
+                                 "crtTime": null,
+                                 "crtUser": null,
+                                 "updTime": null,
+                                 "updUser": null,
+                                 "officeId": null
+                                  }
+                                     ]
+                                   }
+                                 ]
+                               },
+    "testScript":{
+                "/resultCode":"1",
+                "/resultMess":"成功添加客户模板",
+               }
+},"order1":{
+    "case":"查询客户模板",
+    "apiPath":"/ilaw/api/v2/contactTemplate/C",
+    "requestType":"GET",
+    "Content-Type":"application/json;charset=UTF-8",
+    "testScript":{
+                    "/resultCode":"1",
+                    "/resultMess":"成功查看客户模板详情",
+                    "/data/*[0]/contactTemplate/templateType":"C",
+                    "/data/*[0]/contactTemplateItemList/*[0]/contactTemplateItem/itemName":"地址字段",
+                    "/data/*[0]/contactTemplateItemList/*[1]/contactTemplateItem/itemName":"名字字段"
+                   }
+},"order2":{
+    "case":"删除客户模板",
+    "apiPath":"/ilaw/api/v2/contactTemplate/<<order0./data/*[0]/contactTemplate/pkid>>",
+    "requestType":"DELETE",
+    "Content-Type":"application/json;charset=UTF-8",
+    "testScript":{
+                    "/resultCode":"1",
+                    "/resultMess":"成功删除客户模板"
+                   }
+
+}
+
+}}

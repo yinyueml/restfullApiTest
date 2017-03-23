@@ -1,0 +1,26 @@
+{
+"caseGroup":"联系人新增和查询",
+"request":{"order0":{
+    "case":"新增联系人",
+    "apiPath":"/ilaw/api/v2/contact",
+    "requestType":"POST",
+    "Content-Type":"application/json;charset=UTF-8",
+    "requestBody":{"contact":{"name":"自动化先生","contactType":"P"},"companies":[{}],"groups":[{"groupName":"Alpha","groupId":"62F7E17BA02011E69A3800163E0020D1"}],"isOfficeVisiable":"0"},
+    "testScript":{
+            "/resultCode":"1",
+            "/resultMess":"数据插入成功",
+           "/data/*[0]/contact/name":"自动化先生";
+           "/data/*[0]/contact/contactType":"P";
+           }},
+"order1":{
+       "case":"查询联系人",
+       "apiPath":"/ilaw/api/v2/contact/detail/<<order0./data/*[0]/contact/pkid>>",
+       "requestType":"GET",
+       "Content-Type":"application/json;charset=UTF-8",
+       "testScript":{
+       "/data/*[0]/groups/*[0]/groupName":"Alpha",
+       "/data/*[0]/contact/name":"自动化先生[//s//S]*",
+       "/data/*[0]/contact/contactType":"P"
+       }
+
+}}}
