@@ -3,7 +3,7 @@
 <suite name="HTTPReqGenTestSuite" parallel="false" verbose="2" >
 
 
-<parameter name="workJson" value="./testJsons" />
+<parameter name="workJson" value="./testSpringBootJsons" />
 <test name="HTTPReqGenTest">
   <classes>
     <class name="com.ilawApiTest.oper.HTTPReqResTest"/>

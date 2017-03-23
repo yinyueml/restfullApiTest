@@ -1,0 +1,28 @@
+{
+"caseGroup":"测试SpringBoot项目",
+"request":{"order0":{
+    "case":"增加数据",
+    "apiPath":"/springBoot/add",
+    "requestType":"POST",
+    "Content-Type":"application/json;charset=UTF-8",
+    "requestBody":{
+        "group": "fff",
+        "name": "fff"
+    },
+    "testScript":{
+                "/resultCode":"1",
+                "/resultMessage":"成功",
+               }
+},"order1":{
+    "case":"查看数据",
+    "apiPath":"/springBoot/<<order0./data/*[0]/name>>",
+    "requestType":"GET",
+    "Content-Type":"application/json;charset=UTF-8",
+    "testScript":{
+                    "/resultCode":"1",
+                    "/resultMessage":"成功",
+                    "/data/*[0]/group":"eee"
+                   }
+}
+
+}}
